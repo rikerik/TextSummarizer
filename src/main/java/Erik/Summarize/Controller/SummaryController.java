@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import Erik.Summarize.Service.SummaryService;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -19,12 +20,11 @@ public class SummaryController {
         this.service = service;
     }
 
+    // allow requests from the URI
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/summarize")
     public ResponseEntity<String> postMethodName(@RequestBody String text) {
-
-        String returnString = service.extractText(text);
-
-        return ResponseEntity.ok().body(returnString);
+        return ResponseEntity.ok().body(service.extractText(text));
 
     }
 
