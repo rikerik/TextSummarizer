@@ -1,0 +1,13 @@
+package Erik.Summarize;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SummarizeAppApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SummarizeAppApplication.class, args);
+	}
+
+}
