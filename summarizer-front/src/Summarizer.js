@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Summarizer = () => {
   //defining state variables using useState hook
   const [inputText, setInputText] = useState("");
   const [summarizedText, setSummarizedText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   //function to handle input events
   const handleInputChange = (event) => {
@@ -12,6 +14,7 @@ const Summarizer = () => {
   };
 
   const summarizeText = async () => {
+    setIsLoading(true);
     try {
       //send post request to the spring backend
       const response = await axios.post("http://localhost:8080/api/summarize", {
@@ -30,6 +33,8 @@ const Summarizer = () => {
         //something else happened while setting up the request
         console.error("Error:", error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,8 +50,14 @@ const Summarizer = () => {
       <br />
       <button onClick={summarizeText}>Summarize</button>
       <br />
-      <h3>Summarized Text:</h3>
-      <p>{summarizedText}</p>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <h3>Summarized Text:</h3>
+          <p>{summarizedText}</p>
+        </>
+      )}
     </div>
   );
 };

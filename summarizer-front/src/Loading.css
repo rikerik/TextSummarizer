@@ -1,0 +1,37 @@
+/* Loading.css */
+
+@keyframes dots {
+
+    0%,
+    20% {
+        content: "Loading";
+    }
+
+    40% {
+        content: "Loading.";
+    }
+
+    60% {
+        content: "Loading..";
+    }
+
+    80%,
+    100% {
+        content: "Loading...";
+    }
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    /* Adjust height as needed */
+}
+
+.loader::after {
+    content: "Loading";
+    animation: dots 1s steps(1, end) infinite;
+    font-size: 20px;
+    color: #4CAF50;
+}
