@@ -13,7 +13,7 @@ def summarize():
     #extracting the text field
     text = data['text']  
     #generate the summary with the pipeline
-    summary = summarizer(text, max_length=500, min_length=20, do_sample=True)
+    summary = summarizer(text, max_length=300, min_length=20, do_sample=True)
     #extract the text from the summary
     summarized_text = summary[0]['summary_text']
     #return the text in json format
