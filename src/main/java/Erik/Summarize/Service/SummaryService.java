@@ -1,5 +1,6 @@
 package Erik.Summarize.Service;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -12,12 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Erik.Summarize.Exception.HttpRequestException;
 import Erik.Summarize.Exception.JsonConversionException;
+import Erik.Summarize.Util.FileExtractUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,13 +34,31 @@ public class SummaryService {
         this.aiModelUrl = aiModelUrl;
     }
 
-    public String extractText(String text) {
+    public String extractText(String text, MultipartFile file) {
+        if (text == null && file == null) {
+            throw new IllegalArgumentException(
+                    "Both text and file are null. Please provide either text or upload a file.");
+        }
+
+        if (file != null) {
+            try {
+                text = FileExtractUtil.getText(file);
+                log.info("Text extracted from file: " + text);
+            } catch (IOException e) {
+                log.error("Error extracting text from file", e);
+                throw new RuntimeException("Error extracting text from file", e);
+            }
+        } else {
+            log.info("Using provided text for summarization: " + text);
+        }
+
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         // set the header to accept json
 
         ObjectMapper objectMapper = new ObjectMapper();
         String requestBody;
+
         try {
             // Convert text into JSON format
             requestBody = objectMapper.writeValueAsString(Map.of("text", text));

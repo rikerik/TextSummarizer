@@ -1,7 +1,9 @@
 package Erik.Summarize.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import Erik.Summarize.Service.SummaryService;
 
@@ -23,8 +25,9 @@ public class SummaryController {
     // allow requests from the URI
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/summarize")
-    public ResponseEntity<String> postMethodName(@RequestBody String text) {
-        return ResponseEntity.ok().body(service.extractText(text));
+    public ResponseEntity<String> postMethodName(@RequestBody(required = false) String text,
+            @RequestParam(value = "file", required = false) MultipartFile file) {
+        return ResponseEntity.ok().body(service.extractText(text, file));
 
     }
 
