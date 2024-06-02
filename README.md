@@ -1,4 +1,4 @@
-Text Summarization Project
+# Text Summarization Project
 
 This project aims to provide a simple web application for text summarization. It utilizes Python Transformers for text summarization, with a Spring Boot backend serving the summarization API and a React frontend for user interaction.
 Features
