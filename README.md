@@ -11,73 +11,73 @@ Features
 Installation
 Python Setup
 
-    Install Python:
+Install Python:
 
-bash
+    bash
 
-# For Windows or macOS
-https://www.python.org/downloads/
+    # For Windows or macOS
+    https://www.python.org/downloads/
 
-# For Linux (using apt package manager)
-sudo apt-get update
-sudo apt-get install python3
+    # For Linux (using apt package manager)
+    sudo apt-get update
+    sudo apt-get install python3
 
-    Install virtualenv (optional but recommended):
+Install virtualenv (optional but recommended):
 
-bash
+    bash
 
-pip install virtualenv
+    pip install virtualenv
 
-    Create a virtual environment:
+Create a virtual environment:
 
-bash
+    bash
 
-# Create a virtual environment named 'venv'
-virtualenv venv
+    # Create a virtual environment named 'venv'
+    virtualenv venv
 
-# Activate the virtual environment
-# For Windows
-venv\Scripts\activate
-# For macOS/Linux
-source venv/bin/activate
+    # Activate the virtual environment
+    # For Windows
+    venv\Scripts\activate
+    # For macOS/Linux
+    source venv/bin/activate
 
 Backend Setup
 
-    Clone the repository:
+Clone the repository:
 
-bash
+    bash
 
-git clone <repository_url>
+    git clone <repository_url>
 
-    Navigate to the backend directory and install dependencies:
+Navigate to the backend directory and install dependencies:
 
-bash
+    bash
 
-cd backend
-mvn install
+    cd backend
+    mvn install
 
-    Start the Spring Boot server:
+Start the Spring Boot server:
 
-bash
+    bash
 
-mvn spring-boot:run
+    mvn spring-boot:run
 
 Frontend Setup
 
-    Navigate to the frontend directory and install dependencies:
+Navigate to the frontend directory and install dependencies:
 
-bash
+    bash
 
-cd ../frontend
-npm install
+    cd ../frontend
+    npm install
 
-    Start the React development server:
+Start the React development server:
 
-bash
+    bash
 
-npm start
+    npm start
 
-    Access the application in your web browser at http://localhost:3000.
+Access the application in your web browser at http://localhost:3000.
 
 Usage
 
